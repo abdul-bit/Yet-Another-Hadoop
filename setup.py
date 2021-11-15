@@ -39,3 +39,4 @@ for i in range(1, num_datanodes):
         #     [exe, filename1], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=TRUE)
         # for output in process.stdout:
         #     print(output.strip())
+# test for merge req
