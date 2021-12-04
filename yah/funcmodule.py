@@ -1,6 +1,6 @@
 import json, os, math
 
-def dfs_put(num_datanodes,path_to_namenodes):
+def dfs_put(num_datanodes,path_to_namenodes,block_size):
     size = os.path.getsize('C:\PESU college stuff\Sem 5\Sem 5\Big Data\Project\cleaned_nba_data.csv')
     num_of_files=math.ceil(size/(block_size*1024))
     f_block="file_block"

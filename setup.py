@@ -1,10 +1,10 @@
 from setuptools import setup
 setup(
-    name = 'hdfs',
+    name = 'yah',
     version = '0.1.0',
-    packages = ['hdfs'],
+    packages = ['yah'],
     entry_points = {
         'console_scripts': [
-            'hdfs = hdfs.__main__:main'
+            'yah = yah.__main__:main'
         ]
     })
