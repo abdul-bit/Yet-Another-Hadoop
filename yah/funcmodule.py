@@ -44,3 +44,6 @@ def dfs_put(num_datanodes, path_to_namenodes, block_size, directory, file_locati
 
 def dfs_ls(path_to_datanodes,path):
     os.system(f'ls {path_to_datanodes}/path{path}')
+
+def dfs_cat(path_to_datanodes,path):
+    os.system(f'cat {path_to_datanodes}/path{path}')

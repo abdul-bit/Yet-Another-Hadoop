@@ -1,6 +1,6 @@
 import sys, json, os, argparse
 # from .classmodule import MyClass
-from .funcmodule import dfs_ls, dfs_put
+from .funcmodule import dfs_ls, dfs_put,dfs_cat
 
 f = open('config_sample.json')
 data = json.load(f)
@@ -32,22 +32,14 @@ for i in range(1, num_datanodes+1):
 def main():
     args = sys.argv[1:]
     if args[0] == 'mkdir':
-        fw = open(path_to_namenodes+'/namenode.json', 'w')
-        if os.stat(path_to_namenodes+'/namenode.json').st_size == 0:
-            dictionary_dir = {}
-            dictionary_dir[args[1]] = None
-            json.dump(dictionary_dir, fw)
-        else:
-            fr = open(path_to_namenodes+'/namenode.json', 'r')
-            namenode = json.load(fr)
-            if args[1] in namenode:
-                print('directory already exists, create a new one with a different name')
-
+        dfs_mkdir(path_to_datanodes=path_to_datanodes,path=args[1])
     elif args[0] == 'put':
         dfs_put(num_datanodes=num_datanodes,
                 path_to_namenodes=path_to_namenodes, block_size=block_size, directory=args[2], file_location=args[1] , path_to_datanodes=path_to_datanodes)
     elif args[0] == 'ls':
         dfs_ls(path_to_datanodes=path_to_datanodes,path=args[1])
+    elif args[0] == 'cat':
+        dfs_cat(path_to_datanodes=path_to_datanodes,path=args[1])
     else:
         pargs = parser.parse_args()
         mapper_path = pargs.mapper
