@@ -54,6 +54,6 @@ def main():
         output_path = pargs.output
         for i in range(1,4):
             os.system(f'cat {input_path}_{i}.txt | Python3 {mapper_path} >> /Users/naren/Downloads/op.txt')
-        os.system(f'cat /Users/naren/Downloads/op.txt | sort -k 1,1 | Python3 {reducer_path} and')
+        os.system(f'cat /Users/naren/Downloads/op.txt | sort -k 1,1 | Python3 {reducer_path}')
 if __name__ == '__main__':
     main()
