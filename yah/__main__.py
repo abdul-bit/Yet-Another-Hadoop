@@ -1,6 +1,6 @@
 import sys, json, os, argparse
 # from .classmodule import MyClass
-from .funcmodule import dfs_ls, dfs_put,dfs_cat
+from .funcmodule import dfs_ls, dfs_put,dfs_cat,dfs_mkdir
 
 f = open('config_sample.json')
 data = json.load(f)
@@ -52,7 +52,7 @@ def main():
 
             path = path_to_datanodes +'/'+data[input_path][path_to_datanodes][i]+'/'+i
             os.system(f'cat {path} | Python3 {mapper_path} >> op.txt')
-        os.system(f'cat op.txt | sort -k 1,1 | Python3 {reducer_path}')
+        os.system(f'cat op.txt | sort -k 1,1 | Python3 {reducer_path} > {path_to_datanodes}/path{output_path}/op.txt')
         os.remove('op.txt')
 if __name__ == '__main__':
     main()

@@ -47,3 +47,6 @@ def dfs_ls(path_to_datanodes,path):
 
 def dfs_cat(path_to_datanodes,path):
     os.system(f'cat {path_to_datanodes}/path{path}')
+
+def dfs_mkdir(path_to_datanodes,path):
+    os.system(f'mkdir {path_to_datanodes}/path{path}')
