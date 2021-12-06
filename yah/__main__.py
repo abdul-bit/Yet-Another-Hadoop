@@ -25,8 +25,8 @@ parser.add_argument('-output')
 
 for i in range(1, num_datanodes+1):
     try:
-        os.makedirs(path_to_datanodes+'datanode'+str(i))
-    except:
+        os.makedirs(path_to_datanodes+'/datanode'+str(i))
+    except Exception as e:
         pass
 
 def main():
@@ -52,8 +52,12 @@ def main():
         reducer_path = pargs.reducer
         input_path = pargs.input
         output_path = pargs.output
-        for i in range(1,4):
-            os.system(f'cat {input_path}_{i}.txt | Python3 {mapper_path} >> /Users/naren/Downloads/op.txt')
-        os.system(f'cat /Users/naren/Downloads/op.txt | sort -k 1,1 | Python3 {reducer_path}')
+        f = open(path_to_namenodes+'/namenode.json', 'r')
+        data = json.load(f)
+        for i in data[input_path][path_to_datanodes]:
+            path = path_to_datanodes +'/'+data[input_path][path_to_datanodes][i]+'/'+i
+            os.system(f'cat {path} | Python3 {mapper_path} >> op.txt')
+        os.system(f'cat op.txt | sort -k 1,1 | Python3 {reducer_path}')
+        os.remove('op.txt')
 if __name__ == '__main__':
     main()

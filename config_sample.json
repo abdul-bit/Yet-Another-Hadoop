@@ -1,6 +1,6 @@
 {
     "block_size": 64,
-    "path_to_datanodes": "/home/$USER/DATANODE/",
+    "path_to_datanodes": "/Users/naren/Downloads/Datanode",
     "path_to_namenodes": "/Users/naren/Downloads",
     "replication_factor": 3,
     "num_datanodes": 5,
