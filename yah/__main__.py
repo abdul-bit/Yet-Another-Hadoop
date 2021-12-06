@@ -1,6 +1,6 @@
 import sys, json, os, argparse
 # from .classmodule import MyClass
-from .funcmodule import dfs_put
+from .funcmodule import dfs_ls, dfs_put
 
 f = open('config_sample.json')
 data = json.load(f)
@@ -46,6 +46,8 @@ def main():
     elif args[0] == 'put':
         dfs_put(num_datanodes=num_datanodes,
                 path_to_namenodes=path_to_namenodes, block_size=block_size, directory=args[2], file_location=args[1] , path_to_datanodes=path_to_datanodes)
+    elif args[0] == 'ls':
+        dfs_ls(path_to_datanodes=path_to_datanodes,path=args[1])
     else:
         pargs = parser.parse_args()
         mapper_path = pargs.mapper

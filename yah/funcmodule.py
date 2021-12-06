@@ -5,6 +5,12 @@ from fsplit.filesplit import Filesplit
 fs = Filesplit()
 
 def dfs_put(num_datanodes, path_to_namenodes, block_size, directory, file_location, path_to_datanodes):
+    try:
+        os.makedirs(path_to_datanodes+"/path"+directory)
+        shutil.copyfile(file_location,path_to_datanodes+"/path"+directory+"/")
+    except Exception:
+        # print(Exception)
+        shutil.copyfile(file_location,path_to_datanodes+"/path"+directory+"/"+file_location.split("/")[-1])
     size = os.path.getsize(file_location)
     output_dir = path_to_datanodes
     fs.split(file=file_location,
@@ -36,6 +42,5 @@ def dfs_put(num_datanodes, path_to_namenodes, block_size, directory, file_locati
         shutil.move(output_dir+'/'+i, path_to_datanodes +
                     '/'+data[directory][output_dir][i]+'/'+i)
 
-def dfs_ls(path,path_to_namenode):
-    f=open(path_to_namenode+"/namenode.json")
-    js = json.load
+def dfs_ls(path_to_datanodes,path):
+    os.system(f'ls {path_to_datanodes}/path{path}')
