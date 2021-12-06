@@ -22,7 +22,12 @@ parser.add_argument('-mapper')
 parser.add_argument('-reducer')
 parser.add_argument('-input')
 parser.add_argument('-output')
-# pargs = parser.parse_args()
+
+for i in range(1, num_datanodes+1):
+    try:
+        os.makedirs(path_to_datanodes+'datanode'+str(i))
+    except:
+        pass
 
 def main():
     args = sys.argv[1:]
@@ -40,10 +45,15 @@ def main():
 
     elif args[0] == 'put':
         dfs_put(num_datanodes=num_datanodes,
-                path_to_namenodes=path_to_namenodes, block_size=block_size, directory=args[2], file_location=args[1])
+                path_to_namenodes=path_to_namenodes, block_size=block_size, directory=args[2], file_location=args[1] , path_to_datanodes=path_to_datanodes)
     else:
+        pargs = parser.parse_args()
+        mapper_path = pargs.mapper
+        reducer_path = pargs.reducer
+        input_path = pargs.input
+        output_path = pargs.output
         for i in range(1,4):
-            os.system('cat /Users/naren/Downloads/Datanode/dataset_{i}.txt | Python3 /Users/naren/Downloads/mapper.py >> /Users/naren/Downloads/op.txt'.format(i=i))
-        os.system('cat /Users/naren/Downloads/op.txt | sort -k 1,1 | Python3 /Users/naren/Downloads/reducer.py and')
+            os.system(f'cat {input_path}_{i}.txt | Python3 {mapper_path} >> /Users/naren/Downloads/op.txt')
+        os.system(f'cat /Users/naren/Downloads/op.txt | sort -k 1,1 | Python3 {reducer_path} and')
 if __name__ == '__main__':
     main()
