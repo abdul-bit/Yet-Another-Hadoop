@@ -6,4 +6,4 @@
 ## Advit Gandhi PES1UG19CS035
 
 # To install yah
-## pip install .
+## pip install -r requirements.txt
