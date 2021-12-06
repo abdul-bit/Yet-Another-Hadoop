@@ -55,6 +55,7 @@ def main():
         f = open(path_to_namenodes+'/namenode.json', 'r')
         data = json.load(f)
         for i in data[input_path][path_to_datanodes]:
+
             path = path_to_datanodes +'/'+data[input_path][path_to_datanodes][i]+'/'+i
             os.system(f'cat {path} | Python3 {mapper_path} >> op.txt')
         os.system(f'cat op.txt | sort -k 1,1 | Python3 {reducer_path}')
